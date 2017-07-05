@@ -24,8 +24,19 @@
 // GLOBAL VARIABLES
 // 
 // 
+// -TIME CALCULATIONS-
 // 
-// 
+//
+//
+//-USER INFO-
+//
+//var trainName = "";
+//var trainPlace = "";
+//var trainTime = "";
+//var trainFreq = "";
+//var nextArrival = "";
+//var minutesAway ="";
+//
 // 
 
 // ALL FUNCTIONS
@@ -39,7 +50,7 @@
 //
 //
 // adds the information the user submits to firebase database pushes it there too
-//
+//review the set/ref documentation (don't get it mixed up with API/AJAX info)
 //function AddNewTrain(){} 
 // 
 //
@@ -78,6 +89,16 @@
 
 // 
 // 
+// ready the document
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+//
+// 
 // 
 // 
 // 
@@ -86,7 +107,7 @@
 //1.
 //2.
 //3.
-// 
+// 4.  IF TIME try out the authentication UI info or the delete/add buttons 
 // 
 // 
 // 
@@ -96,6 +117,17 @@
 // 
 
 //RESOURCES
-// https://www.tutorialspoint.com/firebase/firebase_environment_setup.htm
-// 
-// 
+//
+//
+// MOMENT.JS
+// https://tutorialzine.com/2012/08/quick-tip-handle-date-and-time-like-a-boss-with-moment-js
+//
+//
+//
+//FIREBASE
+// https://firebase.google.com/docs/auth/web/start
+//https://www.youtube.com/watch?v=k1D0_wFlXgo
+//https://www.tutorialspoint.com/firebase/firebase_environment_setup.htm
+//https://www.tutorialspoint.com/firebase/firebase_write_data.htm
+//https://www.raywenderlich.com/139322/firebase-tutorial-getting-started-2
+
