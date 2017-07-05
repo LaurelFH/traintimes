@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Train Time</title>
+	<!--reset link-->
+	<link rel="stylesheet" href="reset.css">
+	<!--bootstrap-->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!--css sheet-->
+	<link rel="stylesheet" href="style.css">
+	<!--favicon-->
+	<link rel="icon" type="image/jpeg" href="assets/favicon.ico">
+	<!--google font-->
+	<!--viewport-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<!--container fluid-->
+<div class="container-fluid">
+	<!--jumbrotron rounded (so in a container)-->
+	<div class="jumbotron">
+	<h1>Anytime is Train Time</h1>
+	<h3>Choo Choo. Chee Chee.</h3>
+	</div><!--ends the jumbotron-->
+	<!--panel for current train schedule-->
+	<div class="panel panel-primary">
+  <!-- Default panel contents -->
+		<div class="panel-heading">Current Train Schedule</div>
+		<div class="panel-body">
+		<p>Is your train on time?</p>
+		 <!-- Table with stored times etc. add the -hover class later?-->
+		  <table class="table">
+		  	<thead>
+		  		<tr>
+		  			<th>Train Name</th>
+		  			<th>Destination</th>
+		  			<th>Frequency(mins)</th>
+		  			<th>Next Arrival</th>
+		  			<th>Minutes Away</th>
+		  		</tr>
+		  	</thead>
+		  	<tbody>
+			<p>table scope infor per row?</p>
+		  	</tbody>
+		   
+		  </table>
+		  </div>
+		</div><!--ends the overall current train schedule panel-->
+	<!--panel with the add train form/inputs--> 
+	<div class="panel panel-primary">
+	  <!-- Default panel contents -->
+	  <div class="panel-heading">Add Train</div>
+		  <div class="panel-body">
+		    <p>Add your train's information here.</p>
+			<div class="form-group">
+			<label for="trainName">Train Name:</label>
+			<input type="text" class="form-control" id="trainName">
+			</div>
+			<div class="form-group">
+			<label for="trainPlace">Destination:</label>
+			<input type="text" class="form-control" id="trainPlace">
+			</div>
+			<div class="form-group">
+			<label for="trainTime">First Train Time (HH:mm-military time):</label>
+			<input type="number" class="form-control" id="trainTime">
+			</div>
+			<div class="form-group">
+			<label for="trainFreq">Frequency (mins):</label>
+			<input type="number" class="form-control" id="trainFreq">
+			</div>
+			<!--submit button-->
+			<button type="submit" class="btn btn-primary" value="submitButton">Submit</button>
+			</div><!--ends the add train panel body-->
+		  </div><!--ends the overall add train panel-->
+	</div><!--ends the main container-fluid-->
+<!--add Firebase to Train Databse Project-->
+<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAKa-6pIl-P7Wd-zKlo6rCtjTojon1jJPY",
+    authDomain: "train-database-ee4ff.firebaseapp.com",
+    databaseURL: "https://train-database-ee4ff.firebaseio.com",
+    projectId: "train-database-ee4ff",
+    storageBucket: "",
+    messagingSenderId: "395254493742"
+  };
+  firebase.initializeApp(config);
+</script>
+	<!--javascript link-->
+<script type="text/javascript" src="javascript.js"></script>
+
+	<!--jquery link-->
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+
+	<!--moment.js CDN-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js" integrity="sha256-/ioiJhI6NkoUDkSyBru7JZUGXGQhdml6amBC3ApTf5A=" crossorigin="anonymous"></script>
+
+</body>
+</html>
