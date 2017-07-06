@@ -27,7 +27,7 @@ body{
 
 .panel-body{
 
-	/*opacity: .5;*/
+	/*opacity: .5; https://stackoverflow.com/questions/24855438/transparent-bootstrap-panel*/
 
 }
 h1{
