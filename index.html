@@ -26,11 +26,13 @@
 <div class="container-fluid">
 	<!--jumbrotron rounded (so in a container)-->
 	<div class="jumbotron">
-	<h1>Anytime is Train Time</h1>
+		<!--<div class="container" style="background-image: url('spiritseat2.png'); background-size: cover;">-->
+	<h1>All aboard</h1>
 	<h3>Choo Choo. Chee Chee.</h3>
+	<!--</div>-->
 	</div><!--ends the jumbotron-->
 	<!--panel for current train schedule-->
-	<div class="panel panel-primary">
+	<div class="panel panel-danger">
   <!-- Default panel contents -->
 		<div class="panel-heading">Current Train Schedule</div>
 		<div class="panel-body">
@@ -41,6 +43,7 @@
 		  		<tr>
 		  			<th>Train Name</th>
 		  			<th>Destination</th>
+		  			<th>First Train Time</th>
 		  			<th>Frequency(mins)</th>
 		  			<th>Next Arrival</th>
 		  			<th>Minutes Away</th>
@@ -54,7 +57,7 @@
 		  </div>
 		</div><!--ends the overall current train schedule panel-->
 	<!--panel with the add train form/inputs--> 
-	<div class="panel panel-primary">
+	<div class="panel panel-danger">
 	  <!-- Default panel contents -->
 	  <div class="panel-heading">Add Train</div>
 		  <div class="panel-body">
@@ -76,7 +79,7 @@
 			<input type="number" class="form-control" id="trainFreq">
 			</div>
 			<!--submit button-->
-			<button type="submit" class="btn btn-primary" id="trainButton" value="submitButton">Submit</button>
+			<button type="submit" class="btn btn-danger" id="trainButton" value="submitButton">Submit</button>
 			</div><!--ends the add train panel body-->
 		  </div><!--ends the overall add train panel-->
 	</div><!--ends the main container-fluid-->

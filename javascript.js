@@ -55,6 +55,8 @@ var trainFreqInput;
 
 //adds the new train info from the user to the current schedule table 
 function AddNewTrain(name, place, time, freq){
+
+
 	//creates cells for the new train information the user submits 
 	var newRow = $("<tr>");
 	var trainNameCell = $("<td>");
@@ -69,17 +71,52 @@ function AddNewTrain(name, place, time, freq){
 //setting up the months info?
 
 //places all the new information in a new row in the schedule 
+	//clear table space to prevent double entries with the append 
+	//$("#table-body").empty();
 	$(newRow).append(trainNameCell, trainPlaceCell, trainTimeCell, trainFreqCell);
 	$("#table-body").append(newRow);
 	} 
 // 
 //
 //
-//need to come up with a way to pull all the curren titems in the database 
+//get a snapshop of the current data in the database 
 function  pullAllSchedules(){
+	database.ref().on("value", function(snapshot){
 
+		//create a snapshot for each item in the database
+		snapshot.forEach(function(childSnapshot){
 
+			//var key = childSnapshot.key();
+			var childData = childSnapshot.val();
+		
+			trainNameInput = childSnapshot.val().trainNameInput;
+			trainPlaceInput = childSnapshot.val().trainPlaceInput;
+			trainTimeInput = childSnapshot.val().trainTimeInput;
+			trainFreqInput = childSnapshot.val().trainFreqInput;
+		
+			AddNewTrain(trainNameInput, trainPlaceInput, trainTimeInput, trainFreqInput);	
+		});
+
+		//makes new data visible to the user? 
+
+	});
 }
+	//console.log(firebase.database().ref().snapshot);
+	//tells Firebase to watch for the child_added event and take snapshot 
+	//won't want to use child_added here sicne I want to see everything that changes 
+	// database.ref().on("value", function(Snapshot){
+	// 	//console.logging the values of the snapshot
+	// 	// console.log(snapshot);
+	// 	// console.log(snapshot.val().trainNameInput);
+	// 	// console.log(snapshot.val().trainPlaceInput);
+	// 	// console.log(snapshot.val().trainTimeInput);
+	// 	// console.log(snapshot.val().trainFreqInput);
+
+	// 	//add these updated snapshot values to the correct penal/divs so it creates a row for each new train 
+	// 	//potentially loop through to do so?
+
+	// });
+
 // 
 // 
 // 
@@ -111,9 +148,14 @@ function  pullAllSchedules(){
 
 // CALLING THE EVENTS/ACTIONS 
 
-// 
-// 
 // ready the document?
+$(document).ready(function(){
+	//clear table space to prevent double entries with the append 
+	$("#table-body").empty();
+ 	//update the schedule panel with the most recent information from the database
+	pullAllSchedules();
+});
+
  $("#trainButton").click(function(event){
 //prevent the form submission
  	event.preventDefault();
@@ -133,8 +175,9 @@ function  pullAllSchedules(){
  		trainPlaceInput: trainPlaceInput,
  		trainTimeInput: trainTimeInput,
  		trainFreqInput: trainFreqInput
-
  	});
+
+	pullAllSchedules();
 
 });
 // 
@@ -150,8 +193,8 @@ function  pullAllSchedules(){
 // 
 
 //TASKS TO BE COMPLETED:
-//1.
-//2.
+//1. Fix the first train time/train freq mix-up in the display schedules header space 
+//2.calculate next arrival times and time remamining using moment.js
 //3.
 // 4.  IF TIME try out the authentication UI info or the delete/add buttons 
 // 
@@ -176,4 +219,8 @@ function  pullAllSchedules(){
 //https://www.tutorialspoint.com/firebase/firebase_environment_setup.htm
 //https://www.tutorialspoint.com/firebase/firebase_write_data.htm
 //https://www.raywenderlich.com/139322/firebase-tutorial-getting-started-2
+//https://www.youtube.com/watch?v=noB98K6A0TY
+//https://firebase.google.com/docs/database/web/read-and-write
+//Look up Promise:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+//https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
 
