@@ -17,25 +17,24 @@
 // 4.  Display the calculated results for these times in the appropriate divs 
 //5.  Update this information in Firebase 
 // 
+//  
 // 
-// 
-// 
-
 // GLOBAL VARIABLES
 // 
+var database = firebase.database();
+
 // 
 // -TIME CALCULATIONS-
 // 
-//
-//
+////
 //-USER INFO-
-//
-//var trainName = "";
-//var trainPlace = "";
-//var trainTime = "";
-//var trainFreq = "";
-//var nextArrival = "";
-//var minutesAway ="";
+//info that the user is submitting to the table
+var trainNameInput;
+var trainPlaceInput;
+var trainTimeInput;
+var trainFreqInput;
+// var nextArrival;
+// var minutesAway;
 //
 // 
 
@@ -51,13 +50,44 @@
 //
 // adds the information the user submits to firebase database pushes it there too
 //review the set/ref documentation (don't get it mixed up with API/AJAX info)
-//function AddNewTrain(){} 
+//Consider the number of parameters we have to pass through?
+
+
+//adds the new train info from the user to the current schedule table 
+function AddNewTrain(name, place, time, freq){
+	//creates cells for the new train information the user submits 
+	var newRow = $("<tr>");
+	var trainNameCell = $("<td>");
+	var trainPlaceCell = $("<td>");
+	var trainTimeCell = $("<td>");
+	var trainFreqCell = $("<td>");
+//saves the textual values of the cells; make this more jquery like?   
+	trainNameCell.text(name);
+	trainPlaceCell.text(place);
+	trainTimeCell.text(time);
+	trainFreqCell.text(freq);
+//setting up the months info?
+
+//places all the new information in a new row in the schedule 
+	$(newRow).append(trainNameCell, trainPlaceCell, trainTimeCell, trainFreqCell);
+	$("#table-body").append(newRow);
+	} 
 // 
 //
 //
-//
-//
-//
+//need to come up with a way to pull all the curren titems in the database 
+function  pullAllSchedules(){
+
+
+}
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+
 //calculates the next arrival time for the user's train based on the First Train time entered (military time)
 // function calculateArrival(){}
 //
@@ -72,13 +102,7 @@
 //function updateTimes(){} 
 // 
 // 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
+//  
 // 
 // 
 // 
@@ -89,8 +113,30 @@
 
 // 
 // 
-// ready the document
-// 
+// ready the document?
+ $("#trainButton").click(function(event){
+//prevent the form submission
+ 	event.preventDefault();
+ 	//get values from the various inputs from the user doubel check my input use in the IDs 
+ 	trainNameInput = $("#trainName").val().trim();
+ 	trainPlaceInput = $("#trainPlace").val().trim();
+ 	trainTimeInput = $("#trainTime").val().trim();
+ 	trainFreqInput = $("#trainFreq").val().trim();
+ 	console.log(trainNameInput);
+ 	console.log(trainPlaceInput);
+ 	console.log(trainTimeInput);
+ 	console.log(trainFreqInput);
+ 	AddNewTrain(trainNameInput, trainPlaceInput, trainTimeInput, trainFreqInput);
+ 	//save and push this info into firebase
+ 	database.ref().push({
+ 		trainNameInput: trainNameInput,
+ 		trainPlaceInput: trainPlaceInput,
+ 		trainTimeInput: trainTimeInput,
+ 		trainFreqInput: trainFreqInput
+
+ 	});
+
+});
 // 
 // 
 // 

@@ -5,15 +5,10 @@
 	<title>Train Time</title>
 	<!--reset link-->
 	<link rel="stylesheet" href="reset.css">
+
 	<!--bootstrap-->
-	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<!--css sheet-->
 	<link rel="stylesheet" href="style.css">
 	<!--favicon-->
@@ -21,6 +16,10 @@
 	<!--google font-->
 	<!--viewport-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!--jquery link-->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!--moment.js CDN-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js" integrity="sha256-/ioiJhI6NkoUDkSyBru7JZUGXGQhdml6amBC3ApTf5A=" crossorigin="anonymous"></script>
 </head>
 <body>
 <!--container fluid-->
@@ -47,8 +46,8 @@
 		  			<th>Minutes Away</th>
 		  		</tr>
 		  	</thead>
-		  	<tbody>
-			<p>table scope infor per row?</p>
+		  	<tbody id="table-body">
+			
 		  	</tbody>
 		   
 		  </table>
@@ -77,7 +76,7 @@
 			<input type="number" class="form-control" id="trainFreq">
 			</div>
 			<!--submit button-->
-			<button type="submit" class="btn btn-primary" value="submitButton">Submit</button>
+			<button type="submit" class="btn btn-primary" id="trainButton" value="submitButton">Submit</button>
 			</div><!--ends the add train panel body-->
 		  </div><!--ends the overall add train panel-->
 	</div><!--ends the main container-fluid-->
@@ -98,14 +97,7 @@
 	<!--javascript link-->
 <script type="text/javascript" src="javascript.js"></script>
 
-	<!--jquery link-->
-<script
-  src="https://code.jquery.com/jquery-3.2.1.js"
-  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-  crossorigin="anonymous"></script>
 
-	<!--moment.js CDN-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js" integrity="sha256-/ioiJhI6NkoUDkSyBru7JZUGXGQhdml6amBC3ApTf5A=" crossorigin="anonymous"></script>
 
 </body>
 </html>
