@@ -23,21 +23,6 @@
 // 
 var database = firebase.database();
 
-// 
-// -TIME CALCULATIONS-
-// 
-////
-//-USER INFO-
-//info that the user is submitting to the table
-var trainNameInput;
-var trainPlaceInput;
-var trainTimeInput;
-var trainFreqInput;
-// var nextArrival;
-// var minutesAway;
-//
-// 
-
 // ALL FUNCTIONS
 // 
 // 
@@ -53,8 +38,8 @@ var trainFreqInput;
 //Consider the number of parameters we have to pass through?
 
 
-//adds the new train info from the user to the current schedule table 
-function AddNewTrain(name, place, time, freq){
+//adds the new train info to the current schedule table 
+function AddNewTrain(name, place, time, freq, nextArrival, minsAway){
 
 
 	//creates cells for the new train information the user submits 
@@ -63,24 +48,31 @@ function AddNewTrain(name, place, time, freq){
 	var trainPlaceCell = $("<td>");
 	var trainTimeCell = $("<td>");
 	var trainFreqCell = $("<td>");
+	var trainNextArrivalCell = $("<td>");
+	var trainMinsAwayCell = $("<td>");
 //saves the textual values of the cells; make this more jquery like?   
 	trainNameCell.text(name);
 	trainPlaceCell.text(place);
 	trainTimeCell.text(time);
 	trainFreqCell.text(freq);
-//setting up the months info?
-
+	//gets numbers not text?
+	trainNextArrivalCell.text(nextArrival);
+	trainMinsAwayCell.text(minsAway);
 //places all the new information in a new row in the schedule 
 	//clear table space to prevent double entries with the append 
 	//$("#table-body").empty();
-	$(newRow).append(trainNameCell, trainPlaceCell, trainTimeCell, trainFreqCell);
+	$(newRow).append(trainNameCell, trainPlaceCell, trainTimeCell, trainFreqCell, trainNextArrivalCell, trainMinsAwayCell);
 	$("#table-body").append(newRow);
-	} 
+} 
 // 
 //
 //
 //get a snapshop of the current data in the database 
 function  pullAllSchedules(){
+
+	//clear table space to prevent double entries with the append 
+	$("#table-body").empty();
+
 	database.ref().on("value", function(snapshot){
 
 		//create a snapshot for each item in the database
@@ -93,11 +85,19 @@ function  pullAllSchedules(){
 			trainPlaceInput = childSnapshot.val().trainPlaceInput;
 			trainTimeInput = childSnapshot.val().trainTimeInput;
 			trainFreqInput = childSnapshot.val().trainFreqInput;
+			trainMinsAwayInput = calculateMinutesAway(trainTimeInput, trainFreqInput);
+			trainNextArrivalInput = calculateNextArrival(trainMinsAwayInput);
 		
-			AddNewTrain(trainNameInput, trainPlaceInput, trainTimeInput, trainFreqInput);	
+		//get updated next arrival/minutes away from the trains 
+			
+			calculateMinutesAway();			
+
+			AddNewTrain(trainNameInput, trainPlaceInput, trainTimeInput, trainFreqInput, trainNextArrivalInput, trainMinsAwayInput);	
+
+
 		});
 
-		//makes new data visible to the user? 
+		
 
 	});
 }
@@ -119,19 +119,30 @@ function  pullAllSchedules(){
 
 // 
 // 
-// 
-// 
-// 
-// 
-// 
 
 //calculates the next arrival time for the user's train based on the First Train time entered (military time)
-// function calculateArrival(){}
+function calculateNextArrival(trainMinsAwayInput){
+//start time + freq until it's greater than the current time via moment? less than freq 
+		var currentTime = moment();
+		var nextArrivalTime = currentTime + trainMinsAwayInput; 
+		return nextArrivalTime;
+
+}
 //
 //
 //
 //caluclates the number of minutes away the next arrival train is from the local time (based on the frequency)
-// function calculateMinutesAway(){}
+function calculateMinutesAway(trainTimeInput, trainFreqInput){
+
+	var currentTime = moment();
+	var starttimeConverted = moment(trainTimeInput, "HH:mm").subtract(1, "years");
+	var diffTime = moment().diff(moment(starttimeConverted), "HH:mm");
+	var timeRemains = diffTime % trainFreqInput;
+	var timeTillTrain = trainFreqInput - timeRemains;
+	var nextTrain = moment().add(timeTillTrain, "HH:mm");
+	//return will put the variable back where it should go! 
+	return nextTrain;
+}
 // 
 //
 //
@@ -150,8 +161,7 @@ function  pullAllSchedules(){
 
 // ready the document?
 $(document).ready(function(){
-	//clear table space to prevent double entries with the append 
-	$("#table-body").empty();
+
  	//update the schedule panel with the most recent information from the database
 	pullAllSchedules();
 });
@@ -168,7 +178,7 @@ $(document).ready(function(){
  	console.log(trainPlaceInput);
  	console.log(trainTimeInput);
  	console.log(trainFreqInput);
- 	AddNewTrain(trainNameInput, trainPlaceInput, trainTimeInput, trainFreqInput);
+ 	
  	//save and push this info into firebase
  	database.ref().push({
  		trainNameInput: trainNameInput,
@@ -193,10 +203,10 @@ $(document).ready(function(){
 // 
 
 //TASKS TO BE COMPLETED:
-//1. Fix the first train time/train freq mix-up in the display schedules header space 
-//2.calculate next arrival times and time remamining using moment.js
-//3.
-// 4.  IF TIME try out the authentication UI info or the delete/add buttons 
+//1. fix the return format problem for the times 
+//2.calculate next arrival times and time remaining using moment.js
+//3.IF TIME try out the authentication UI info or the delete/add buttons 
+// 4.  
 // 
 // 
 // 
