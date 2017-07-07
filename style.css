@@ -2,11 +2,13 @@
 	text-align: left;
 	color: white;
 	background-color: transparent;
-	/*background-image: url("jumboimage.png");*/
+	/*background-color: rgba(231, 217, 151, 0.58);*/
+		/*background-image: url("jumboimage.png");*/
 }
 
 .table{
 	font-weight: bolder;
+	font-family: 'Gloria Hallelujah', cursive;
 }
 
 
@@ -25,19 +27,45 @@ body{
 	max-width: 1000px;
 }
 
+.panel.panel-danger{
+	/*makes the panel background transparent*/
+    /*background-color: rgba(245, 245, 245, 0);*/
+    background-color: rgba(231, 217, 151, 0.58);
+    color: black;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+.form-control{
+	background-color: rgba(42, 96, 183, 0.28);
+
+
+}
 .panel-body{
 
 	/*opacity: .5; https://stackoverflow.com/questions/24855438/transparent-bootstrap-panel*/
 
 }
-h1{
+/*h1{
 
 	text-shadow: 1px 5px 2px rgba(170, 161, 179, 1);
 
+}
+*/
+h1{
+
+	/*text-shadow: 1px 5px 2px rgba(170, 161, 179, 1);*/
+	text-shadow: 2px -29px 2px rgba(42, 96, 183, 0.6);
+	font-size: 100%;
+	font-family: 'Gloria Hallelujah', cursive;
 }
 
 .panel-heading{
 
 	/*text-align: center;*/
 	font-weight: bolder;
+	background-color: rgba(183, 91, 42, 0.28);
+	color: black;
+}
+.btn{
+	color: black;
 }

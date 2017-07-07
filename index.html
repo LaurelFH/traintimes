@@ -14,6 +14,7 @@
 	<!--favicon-->
 	<link rel="icon" type="image/jpeg" href="assets/favicon.ico">
 	<!--google font-->
+	<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
 	<!--viewport-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!--jquery link-->
@@ -22,13 +23,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js" integrity="sha256-/ioiJhI6NkoUDkSyBru7JZUGXGQhdml6amBC3ApTf5A=" crossorigin="anonymous"></script>
 </head>
 <body>
+<!-- Link to moment.js -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 <!--container fluid-->
 <div class="container-fluid">
 	<!--jumbrotron rounded (so in a container)-->
 	<div class="jumbotron">
 		<!--<div class="container" style="background-image: url('spiritseat2.png'); background-size: cover;">-->
-	<h1>All aboard</h1>
-	<h3>Choo Choo. Chee Chee.</h3>
+	<!--<h1>All aboard</h1>-->
+	<h1>“I've gotta get out of this place... Someday I’m getting on that train.”</h1>
 	<!--</div>-->
 	</div><!--ends the jumbotron-->
 	<!--panel for current train schedule-->
@@ -36,7 +39,7 @@
   <!-- Default panel contents -->
 		<div class="panel-heading">Current Train Schedule</div>
 		<div class="panel-body">
-		<p>Is your train on time?</p>
+		
 		 <!-- Table with stored times etc. add the -hover class later?-->
 		  <table class="table">
 		  	<thead>
@@ -61,7 +64,7 @@
 	  <!-- Default panel contents -->
 	  <div class="panel-heading">Add Train</div>
 		  <div class="panel-body">
-		    <p>Add your train's information here.</p>
+		    
 			<div class="form-group">
 			<label for="trainName">Train Name:</label>
 			<input type="text" class="form-control" id="trainName">
