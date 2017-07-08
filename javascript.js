@@ -87,11 +87,9 @@ function  pullAllSchedules(){
 			trainFreqInput = childSnapshot.val().trainFreqInput;
 			trainMinsAwayInput = calculateMinutesAway(trainTimeInput, trainFreqInput);
 			trainNextArrivalInput = calculateNextArrival(trainMinsAwayInput);
-		
-		//get updated next arrival/minutes away from the trains 
-			
-			calculateMinutesAway();			
-
+			//MAKE THIS NOT AN ODD DECIMAL https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
+			trainMinsAwayInput = Math.round(trainMinsAwayInput);
+			//get updated next arrival/minutes away from the trains 
 			AddNewTrain(trainNameInput, trainPlaceInput, trainTimeInput, trainFreqInput, trainNextArrivalInput, trainMinsAwayInput);	
 
 
@@ -123,10 +121,8 @@ function  pullAllSchedules(){
 //calculates the next arrival time for the user's train based on the First Train time entered (military time)
 function calculateNextArrival(trainMinsAwayInput){
 //start time + freq until it's greater than the current time via moment? less than freq 
-		var currentTime = moment();
-		var nextArrivalTime = currentTime + trainMinsAwayInput; 
-		return nextArrivalTime;
-		// moment.utc(nextArrivalTime).format('HH:mm');
+		
+		return moment().add(trainMinsAwayInput, "m").format("hh:mm");
 
 }
 //
@@ -134,20 +130,26 @@ function calculateNextArrival(trainMinsAwayInput){
 //
 //caluclates the number of minutes away the next arrival train is from the local time (based on the frequency)
 function calculateMinutesAway(trainTimeInput, trainFreqInput){
-	//gets current moment 
-	var currentTime = moment();
-	//converts the starting train time; try moment(trainTimeInput).format("HH:mm").subtract etc.?
-	//makes sure the date isn't one from the past 
-	var starttimeConverted = moment(trainTimeInput, "HH:mm").subtract(1, "years");
-	//get the difference between the converted start time and the current time 
-	var diffTime = moment().diff(moment(starttimeConverted), "minutes");
-	//gets the time remaining from the mod. 
-	var timeRemains = diffTime % trainFreqInput;
-	var timeTillTrain = trainFreqInput - timeRemains;
-	var nextTrain = moment().add(timeTillTrain, "minutes");
+	//making a moment based on the user's train's start time and setting it back 1 year to make sure it's in the past
+	var trainStartTime = moment(trainTimeInput, "hh:mm").subtract(1, "years");
+	//initalizing this varibale so I can figure out when the next arrival time is 
+	var nextArrivalTime = moment(trainStartTime);
+	console.log(trainStartTime.format("hh:mm"));
+	console.log(nextArrivalTime.format("hh:mm"));
 
-	//return will put the variable back where it should go! 
-	return nextTrain;
+	//figures out when the next arrival time is 
+	do {
+	
+		//calculating/adding the train frequencey to the arrival time 
+		nextArrivalTime = moment(nextArrivalTime).add(trainFreqInput, "m");
+	
+	} 
+	//need to stop when the next arrival time is in the future (past the current moment) 
+	while(!moment().isBefore(nextArrivalTime));
+
+	//WATCH OUT FOR MILLISECONDS HERE!!!!--60,000
+	return moment(nextArrivalTime).diff(moment())/60000;
+
 
 }
 // 
