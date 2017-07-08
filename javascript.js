@@ -94,8 +94,7 @@ function  pullAllSchedules(){
 
 
 		});
-
-		
+	
 
 	});
 }
@@ -159,9 +158,6 @@ function calculateMinutesAway(trainTimeInput, trainFreqInput){
 //function updateTimes(){} 
 // 
 // 
-//  
-// 
-// 
 // 
 // 
 
@@ -215,7 +211,6 @@ $(document).ready(function(){
 //1. fix the return format problem for the times 
 //2.calculate next arrival times and time remaining using moment.js
 //3.IF TIME try out the authentication UI info or the delete/add buttons 
-// 4.  
 // 
 // 
 // 
@@ -229,6 +224,10 @@ $(document).ready(function(){
 //
 // MOMENT.JS
 // https://tutorialzine.com/2012/08/quick-tip-handle-date-and-time-like-a-boss-with-moment-js
+//https://stackoverflow.com/questions/22938300/convert-milliseconds-to-hours-and-minutes-using-momentjs
+//https://www.sitepoint.com/managing-dates-times-using-moment-js/
+//http://momentjs.com/docs/#/displaying/format/
+//http://stackabuse.com/moment-js-a-better-date-library-for-javascript/
 //
 //
 //
@@ -242,4 +241,20 @@ $(document).ready(function(){
 //https://firebase.google.com/docs/database/web/read-and-write
 //Look up Promise:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 //https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
+//
+//
+//OTHER
+//https://www.w3schools.com/jsref/jsref_dowhile.asp
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
+//http://www.javascripter.net/faq/rounding.htm
+//https://myanimelist.net/featured/468/20_Most_Memorable_Quotes_from_Spirited_Away
+//https://css3gen.com/text-shadow/
+//http://www.hexcolortool.com/#b75b2a,0.47
+//
+//
+//
+//
+//
+//
+
 
