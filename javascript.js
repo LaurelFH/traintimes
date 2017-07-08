@@ -55,7 +55,7 @@ function AddNewTrain(name, place, time, freq, nextArrival, minsAway){
 	trainPlaceCell.text(place);
 	trainTimeCell.text(time);
 	trainFreqCell.text(freq);
-	//gets numbers not text?
+	//gets numbers not text? need to make this moment(nextArrival etc.).format("hh:mm")
 	trainNextArrivalCell.text(nextArrival);
 	trainMinsAwayCell.text(minsAway);
 //places all the new information in a new row in the schedule 
@@ -126,6 +126,7 @@ function calculateNextArrival(trainMinsAwayInput){
 		var currentTime = moment();
 		var nextArrivalTime = currentTime + trainMinsAwayInput; 
 		return nextArrivalTime;
+		// moment.utc(nextArrivalTime).format('HH:mm');
 
 }
 //
@@ -133,15 +134,21 @@ function calculateNextArrival(trainMinsAwayInput){
 //
 //caluclates the number of minutes away the next arrival train is from the local time (based on the frequency)
 function calculateMinutesAway(trainTimeInput, trainFreqInput){
-
+	//gets current moment 
 	var currentTime = moment();
+	//converts the starting train time; try moment(trainTimeInput).format("HH:mm").subtract etc.?
+	//makes sure the date isn't one from the past 
 	var starttimeConverted = moment(trainTimeInput, "HH:mm").subtract(1, "years");
-	var diffTime = moment().diff(moment(starttimeConverted), "HH:mm");
+	//get the difference between the converted start time and the current time 
+	var diffTime = moment().diff(moment(starttimeConverted), "minutes");
+	//gets the time remaining from the mod. 
 	var timeRemains = diffTime % trainFreqInput;
 	var timeTillTrain = trainFreqInput - timeRemains;
-	var nextTrain = moment().add(timeTillTrain, "HH:mm");
+	var nextTrain = moment().add(timeTillTrain, "minutes");
+
 	//return will put the variable back where it should go! 
 	return nextTrain;
+
 }
 // 
 //
